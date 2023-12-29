@@ -29,32 +29,3 @@ def ceremonyEligibility(total_days):
 
 total_days = 5
 print(ceremonyEligibility(total_days))
-
-
-
-def countWays(n):
-    dp = [0] * (n + 1)
-    dp[0] = 1
-    dp[1] = 2
-
-    for i in range(2, n + 1):
-        dp[i] = dp[i - 1] + dp[i - 2]
-        if i >= 5:
-            dp[i] -= dp[i - 5]
-
-    return dp[n]
-
-def probabilityMissCeremony(N):
-    total_ways = countWays(N)
-    ways_without_missing = countWays(N - 1)
-    probability_missing = total_ways - ways_without_missing
-    
-    return f"{probability_missing}/{total_ways}"
-
-# Test cases
-# test_cases = [5, 10]
-days = 5
-
-# for days in test_cases:
-result = probabilityMissCeremony(days)
-print(f"For {days} days: {result}")
